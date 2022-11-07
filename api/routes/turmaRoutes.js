@@ -6,6 +6,7 @@ const router = Router();
 router.get('/turma', TurmaController.getAllTurma);
 router.get('/turma/:id', TurmaController.getTurma);
 router.post('/turma/', TurmaController.createTurma);
+router.post('/turma/:id/restore', TurmaController.restoreTurma);
 router.put('/turma/:id', TurmaController.updateTurma);
 router.delete('/turma/:id', TurmaController.deleteTurma);
 

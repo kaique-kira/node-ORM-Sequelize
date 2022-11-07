@@ -6,6 +6,7 @@ const router = Router();
 router.get('/nivel', NivelController.getAllNivel);
 router.get('/nivel/:id', NivelController.getNivel);
 router.post('/nivel/', NivelController.createNivel);
+router.post('/nivel/:id/restore', NivelController.restoreNiveis);
 router.put('/nivel/:id', NivelController.updateNivel);
 router.delete('/nivel/:id', NivelController.deleteNivel); 
 
