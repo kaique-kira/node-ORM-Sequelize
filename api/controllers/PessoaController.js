@@ -54,6 +54,56 @@ class PessoaController {
             }
         }
 
+        static async getMatricula(req, res) {
+            const {estudanteId, matriculaId} = req.params;
+            try{
+                const getOneMatricula = await database.Matriculas.findOne({where: {
+                    id: Number(matriculaId),
+                     estudante_id: Number(estudanteId)}});
+                return res.status(200).json(getOneMatricula);
+            } catch(error){
+                return res.status(500).json(error.message);
+            }
+        }
+
+        static async createMatricula(req, res) {
+            const {estudanteId} = req.params;
+            const newMatricula = {...req.body, estudante_id: Number(estudanteId)};
+            try {
+                const newMatriculaCreate = await database.Matriculas.create(newMatricula);
+                return res.status(200).json(newMatriculaCreate);
+            } catch (error) {
+                return res.status(500).json(error.message);
+            }
+        }
+
+        static async updateMatricula(req, res) {
+            const {estudanteId, matriculaId} = req.params;
+            const newInfo = req.body;
+            try {
+                await database.Matriculas.update(newInfo, {where: {
+                    id: Number(matriculaId),
+                    estudante_id: Number(estudanteId)
+                }});
+                const matriculaUpdate = await database.Matriculas.findOne({where: {id:Number(matriculaId)}});
+                return res.status(200).json(matriculaUpdate);
+            } catch (error) {
+                return res.status(500).json(error.message);
+            }
+        }
+
+        static async deleteMatricula(req, res){
+            const {estudanteId, matriculaId} = req.params;
+            try {
+                await database.Matriculas.destroy({where: {id: Number(matriculaId)}});
+                return res.status(200).json({mensagem: `id ${matriculaId} deleted`})                
+            } catch (error) {
+                return res.status(500).json(error.message);
+                
+            }
+        }
+    
+
 }
 
 module.exports = PessoaController;
