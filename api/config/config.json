@@ -5,8 +5,7 @@
     "database": "kaique",
     "host": "192.168.1.104", 
     "port": "3306",
-    "dialect": "mysql",
-    "OperatorsAliases": false
+    "dialect": "mysql"
   },
   "test": {
     "username": "root",
